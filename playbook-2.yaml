@@ -14,6 +14,20 @@
       become: yes
       become_method: sudo
 
+    - name: Removing containerd.io
+      ansible.builtin.apt:
+        name: containerd
+        state: absent
+      become: yes
+      become_method: sudo
+
+    - name: Re-Installing containerd.io
+      ansible.builtin.apt:
+        name: cotainerd
+        state: present
+      become: yes
+      become_method: sudo
+
   handlers:
     - name: Restart containerd
       ansible.builtin.service:
