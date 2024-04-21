@@ -1,15 +1,21 @@
 - name: Update apt and install docker
   hosts: 192.168.0.102
   tasks:
-  - name: Updating apt repository 
-    ansible.builtin.apt:
-      update_cache: yes
-    become: yes
-    become_method: sudo
+    - name: Updating apt repository 
+      ansible.builtin.apt:
+        update_cache: yes
+      become: yes
+      become_method: sudo
 
-  - name: Installing Docker
-    ansible.builtin.apt:
-      name: docker.io
-      state: present
-    become: yes
-    become_method: sudo
+    - name: Installing Docker
+      ansible.builtin.apt:
+        name: docker.io
+        state: present
+      become: yes
+      become_method: sudo
+
+  handlers:
+    - name: Restart containerd
+      ansible.builtin.service:
+        name: containerd
+        state: Restart
