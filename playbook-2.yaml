@@ -23,7 +23,7 @@
 
     - name: Re-Installing containerd.io
       ansible.builtin.apt:
-        name: cotainerd
+        name: containerd
         state: present
       become: yes
       become_method: sudo
