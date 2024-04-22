@@ -1,0 +1,17 @@
+---
+- name: Containers with Ansible
+  hosts: all
+
+  tasks:
+    - name: Create Container 1
+      ansible.builtin.docker_container:
+        name: container-1
+        image: l3002/sshd
+        ports:
+          - "9000:22"
+    - name: Create Container 2
+      ansible.builtin.docker_container:
+        name: container-2
+        image: l3002/sshd
+        ports:
+          - "9001:22"
